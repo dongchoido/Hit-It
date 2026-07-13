@@ -6,4 +6,5 @@ public class LevelDataSO : ScriptableObject
     public int totalKnives;
     public GameObject logPrefab;
     public RotationPatternSO rotationPattern;
+    public bool isBossLevel;
 }

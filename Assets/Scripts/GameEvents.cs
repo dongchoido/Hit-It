@@ -8,6 +8,7 @@ public static class GameEvents
     public static Action OnKnifeHitKnife;
     public static Action OnAppleCollected;
     public static Action OnLevelComplete;
+    public static Action OnClusterVictory;
     public static Action OnGameOver;
     public static Action<int> OnLevelLoaded;
     public static Action<int> OnScoreChanged;

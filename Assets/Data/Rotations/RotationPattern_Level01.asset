@@ -12,9 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b037c501482e9414fb31b1d87f684424, type: 3}
   m_Name: RotationPattern_Level01
   m_EditorClassIdentifier: Assembly-CSharp::RotationPatternSO
-  speeds:
-  - 100
-  - -100
-  durations:
-  - 3
-  - 3
+  phases:
+  - speed: 300
+    duration: 10
+    speedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.03803934
+        value: -0.004513132
+        inSlope: -2.712771
+        outSlope: -2.712771
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.3142383
+        value: -0.9601617
+        inSlope: 0.9208596
+        outSlope: 0.9208596
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.73901325
+        value: 0.9744717
+        inSlope: 0.38805485
+        outSlope: 0.38805485
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.99572057
+        value: 0.004533807
+        inSlope: -3.7783804
+        outSlope: -3.7783804
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  randomizePhaseOrder: 1

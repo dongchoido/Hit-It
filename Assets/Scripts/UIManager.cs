@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnScoreChanged += HandleScoreChanged;
         GameEvents.OnKnifeHitLog += HandleKnifeUsed;
         GameEvents.OnGameOver += HandleGameOver;
-        GameEvents.OnLevelComplete += HandleLevelComplete;
+        GameEvents.OnClusterVictory += HandleClusterVictory;
     }
 
     private void OnDisable()
@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnScoreChanged -= HandleScoreChanged;
         GameEvents.OnKnifeHitLog -= HandleKnifeUsed;
         GameEvents.OnGameOver -= HandleGameOver;
-        GameEvents.OnLevelComplete -= HandleLevelComplete;
+        GameEvents.OnClusterVictory -= HandleClusterVictory;
     }
 
     private void HandleLevelLoaded(int totalKnives)
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
     }
 
-    private void HandleLevelComplete()
+    private void HandleClusterVictory()
     {
         if (victoryPanel != null) victoryPanel.SetActive(true);
     }

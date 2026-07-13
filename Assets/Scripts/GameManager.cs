@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         GameEvents.OnLevelLoaded += HandleLevelLoaded;
         GameEvents.OnKnifeHitLog += HandleKnifeHitLog;
         GameEvents.OnKnifeHitKnife += HandleKnifeHitKnife;
-        GameEvents.OnLevelComplete += HandleLevelComplete;
+        GameEvents.OnClusterVictory += HandleClusterVictory;
         GameEvents.OnGameOver += HandleGameOver;
     }
 
@@ -34,14 +34,14 @@ public class GameManager : MonoBehaviour
         GameEvents.OnLevelLoaded -= HandleLevelLoaded;
         GameEvents.OnKnifeHitLog -= HandleKnifeHitLog;
         GameEvents.OnKnifeHitKnife -= HandleKnifeHitKnife;
-        GameEvents.OnLevelComplete -= HandleLevelComplete;
+        GameEvents.OnClusterVictory -= HandleClusterVictory;
         GameEvents.OnGameOver -= HandleGameOver;
     }
 
     private void HandleLevelLoaded(int totalKnives)
     {
         knivesRemaining = totalKnives;
-        score = 0;
+        if (CurrentState == GameState.Start) score = 0;
         CurrentState = GameState.Playing;
         GameEvents.OnGameStart?.Invoke();
         GameEvents.OnSpawnNextKnife?.Invoke();
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         GameEvents.OnGameOver?.Invoke();
     }
 
-    private void HandleLevelComplete()
+    private void HandleClusterVictory()
     {
         CurrentState = GameState.Victory;
     }

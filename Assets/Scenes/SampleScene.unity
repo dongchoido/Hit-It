@@ -972,8 +972,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1415a04ba56ef459c3f46687c2f6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  currentLevel: {fileID: 11400000, guid: 8f919742580cfe24586614955d87c1d4, type: 2}
+  levelCluster:
+  - {fileID: 11400000, guid: 8f919742580cfe24586614955d87c1d4, type: 2}
+  - {fileID: 11400000, guid: 6567e8a6593458d48a1323108b22ee0e, type: 2}
+  - {fileID: 11400000, guid: 962f8a0a0eac4894686a5c4e06302f3b, type: 2}
+  - {fileID: 11400000, guid: 7b6c0e42022258d498e54bd14c8f6001, type: 2}
+  - {fileID: 11400000, guid: 4ee4ea8b0e782b94c94285122956f916, type: 2}
   logSpawnPoint: {fileID: 111978005}
+  nextLevelDelay: 1
 --- !u!1 &1336255486
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f9b0c15f55e284f854c8ec33e009c0, type: 3}
+  m_Name: LevelData_03
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
+  totalKnives: 6
+  logPrefab: {fileID: 8876176794395197532, guid: add74c6c5ce67b7448550cfffc0be3af, type: 3}
+  rotationPattern: {fileID: 11400000, guid: 49b5a13d9c5abf94a8211f5e8a5ef3e0, type: 2}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7339234469563057464}
   - component: {fileID: 4202496146225569233}
   - component: {fileID: -4911381991671391822}
+  - component: {fileID: -3805501525926024461}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Knife
@@ -180,3 +181,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeController
   knifeData: {fileID: 11400000, guid: bc3a40d867821e84e9a8c400618dbf3d, type: 2}
+  fallGravityScale: 5
+--- !u!114 &-3805501525926024461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095310661499248199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca088ec5afd56b478cc5e04b5c382ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OffscreenKnifeReturner
+  returnYThreshold: -15
