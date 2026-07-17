@@ -55,21 +55,8 @@ public class LevelManager : MonoBehaviour
     private IEnumerator LoadNextLevelRoutine()
     {
         yield return new WaitForSeconds(nextLevelDelay);
-        ClearAttachedKnives();
         if (spawnedLog != null) Destroy(spawnedLog.gameObject);
         SpawnLevel(levelCluster[currentLevelIndex]);
-    }
-
-    private void ClearAttachedKnives()
-    {
-        if (spawnedLog == null) return;
-        Transform logTransform = spawnedLog.transform;
-        for (int i = logTransform.childCount - 1; i >= 0; i--)
-        {
-            Transform child = logTransform.GetChild(i);
-            if (!child.CompareTag("Knife")) continue;
-            PoolManager.Instance.ReturnKnife(child.gameObject);
-        }
     }
 
     private void SpawnLevel(LevelDataSO levelData)
@@ -79,6 +66,11 @@ public class LevelManager : MonoBehaviour
         GameObject logInstance = Instantiate(levelData.logPrefab, spawnPosition, Quaternion.identity);
         spawnedLog = logInstance.GetComponent<LogController>();
         if (spawnedLog != null) spawnedLog.Init(levelData.rotationPattern);
+        if (spawnedLog != null) spawnedLog.PlayEntranceAnimation();
+        LogAppleSpawner appleSpawner = logInstance.GetComponent<LogAppleSpawner>();
+        if (appleSpawner != null) appleSpawner.SpawnApples(levelData.applePrefab, levelData.applePlacements);
+        LogKnifeSpawner knifeSpawner = logInstance.GetComponent<LogKnifeSpawner>();
+        if (knifeSpawner != null) knifeSpawner.SpawnObstacleKnives(levelData.obstacleKnifePrefab, levelData.obstacleKnifePlacements);
         GameEvents.OnLevelLoaded?.Invoke(levelData.totalKnives);
     }
 }

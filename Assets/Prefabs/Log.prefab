@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7562810140082843042}
   - component: {fileID: 8854079462269856070}
   - component: {fileID: 2814015568736698385}
+  - component: {fileID: -6441618376041739547}
+  - component: {fileID: 6009978512384143138}
   m_Layer: 0
   m_Name: Log
   m_TagString: Log
@@ -84,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.964316, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.88352054, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -141,3 +143,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d6f4604870579488895073fb9f36b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogController
+  brokenLogPrefab: {fileID: 4467392617887855321, guid: c931cdd12eaf8d34eba2d0ab230ea434, type: 3}
+  splitForce: 4
+  brokenPieceLifetime: 2
+  entranceDuration: 0.45
+  entranceDropHeight: 5
+  entranceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.50222105
+      value: 0.50333154
+      inSlope: 1.4999702
+      outSlope: 1.4999702
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-6441618376041739547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876176794395197532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0773b59d07e8a246b93c86b424e5c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogAppleSpawner
+--- !u!114 &6009978512384143138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876176794395197532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65633f58ef6d8d14588c05901b65d6f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogKnifeSpawner

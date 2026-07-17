@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text totalApplesText;
     [SerializeField] private GameObject knifeIconPrefab;
     [SerializeField] private Transform knifeIconContainer;
     [SerializeField] private GameObject gameOverPanel;
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnKnifeHitLog += HandleKnifeUsed;
         GameEvents.OnGameOver += HandleGameOver;
         GameEvents.OnClusterVictory += HandleClusterVictory;
+        GameEvents.OnCurrencyChanged += HandleCurrencyChanged;
     }
 
     private void OnDisable()
@@ -40,6 +42,12 @@ public class UIManager : MonoBehaviour
         GameEvents.OnKnifeHitLog -= HandleKnifeUsed;
         GameEvents.OnGameOver -= HandleGameOver;
         GameEvents.OnClusterVictory -= HandleClusterVictory;
+        GameEvents.OnCurrencyChanged -= HandleCurrencyChanged;
+    }
+
+    private void Start()
+    {
+        if (CurrencyManager.Instance != null) HandleCurrencyChanged(CurrencyManager.Instance.TotalApples);
     }
 
     private void HandleLevelLoaded(int totalKnives)
@@ -57,7 +65,6 @@ public class UIManager : MonoBehaviour
             GameObject icon = Instantiate(knifeIconPrefab, knifeIconContainer);
             knifeIcons.Add(icon);
         }
-        Debug.Log(totalKnives);
     }
 
     private void HandleScoreChanged(int score)
@@ -81,5 +88,10 @@ public class UIManager : MonoBehaviour
     private void HandleClusterVictory()
     {
         if (victoryPanel != null) victoryPanel.SetActive(true);
+    }
+
+    private void HandleCurrencyChanged(int total)
+    {
+        if (totalApplesText != null) totalApplesText.text = total.ToString();
     }
 }

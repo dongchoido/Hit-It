@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0f3a40c0cf2a04c944a6e23a8fa44f, type: 3}
   m_Name: KnifeData_Default
   m_EditorClassIdentifier: Assembly-CSharp::KnifeDataSO
-  throwForce: 30
+  throwForce: 35

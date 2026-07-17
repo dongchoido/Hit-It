@@ -26,14 +26,19 @@ public class AudioManager : MonoBehaviour
     {
         GameEvents.OnKnifeHitLog += PlayHitLog;
         GameEvents.OnKnifeHitKnife += PlayHitKnife;
-        GameEvents.OnAppleCollected += PlayCollectApple;
+        GameEvents.OnAppleCollected += HandleAppleCollected;
     }
 
     private void OnDisable()
     {
         GameEvents.OnKnifeHitLog -= PlayHitLog;
         GameEvents.OnKnifeHitKnife -= PlayHitKnife;
-        GameEvents.OnAppleCollected -= PlayCollectApple;
+        GameEvents.OnAppleCollected -= HandleAppleCollected;
+    }
+
+    private void HandleAppleCollected(int amount)
+    {
+        PlayCollectApple();
     }
 
     private void PlayHitLog()

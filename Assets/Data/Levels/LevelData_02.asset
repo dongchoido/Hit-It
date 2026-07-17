@@ -15,3 +15,11 @@ MonoBehaviour:
   totalKnives: 6
   logPrefab: {fileID: 8876176794395197532, guid: add74c6c5ce67b7448550cfffc0be3af, type: 3}
   rotationPattern: {fileID: 11400000, guid: 49b5a13d9c5abf94a8211f5e8a5ef3e0, type: 2}
+  isBossLevel: 0
+  applePrefab: {fileID: 5325318884181713363, guid: 3a91eb2d30981d04badd27bb7bc75757, type: 3}
+  obstacleKnifePrefab: {fileID: 0}
+  logRadius: 0.625
+  applePlacements:
+  - angleDegrees: 31.331749
+    radius: 0.6198577
+  obstacleKnifePlacements: []
