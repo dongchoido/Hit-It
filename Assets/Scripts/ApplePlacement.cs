@@ -4,5 +4,4 @@ using System;
 public class ApplePlacement
 {
     public float angleDegrees;
-    public float radius;
 }

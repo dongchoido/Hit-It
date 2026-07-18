@@ -15,12 +15,14 @@ public class LogController : MonoBehaviour
     private Coroutine rotateRoutine;
     private List<RotationPhase> activePhases;
     private SpriteRenderer spriteRenderer;
-    private Collider2D logCollider;
+    private CircleCollider2D logCollider;
+
+    public float SurfaceRadius => logCollider != null ? logCollider.radius * transform.lossyScale.x : 0f;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        logCollider = GetComponent<Collider2D>();
+        logCollider = GetComponent<CircleCollider2D>();
     }
 
     private void OnEnable()
@@ -45,6 +47,14 @@ public class LogController : MonoBehaviour
     public void PlayEntranceAnimation()
     {
         StartCoroutine(EntranceRoutine());
+    }
+
+    public static float GetPrefabSurfaceRadius(GameObject logPrefab)
+    {
+        if (logPrefab == null) return 0f;
+        CircleCollider2D prefabCollider = logPrefab.GetComponent<CircleCollider2D>();
+        if (prefabCollider == null) return 0f;
+        return prefabCollider.radius * logPrefab.transform.localScale.x;
     }
 
     private IEnumerator EntranceRoutine()

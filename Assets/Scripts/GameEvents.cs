@@ -15,4 +15,10 @@ public static class GameEvents
     public static Action OnSpawnNextKnife;
     public static Action<Vector3> OnLogImpact;
     public static Action<int> OnCurrencyChanged;
+    public static Action OnKnifeThrown;
+    public static Action<bool> OnLevelMusicChanged;
+    public static Action OnUIButtonClicked;
+    public static Action<float> OnMusicVolumeChanged;
+    public static Action<float> OnSfxVolumeChanged;
+    public static Action<bool> OnAudioMuteChanged;
 }

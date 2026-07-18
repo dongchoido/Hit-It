@@ -21,6 +21,8 @@ public class AppleController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        rb.isKinematic = true;
+        rb.gravityScale = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

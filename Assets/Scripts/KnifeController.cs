@@ -12,6 +12,7 @@ public class KnifeController : MonoBehaviour
     [SerializeField] private float anticipationDuration = 0.08f;
     [SerializeField] private float anticipationOffset = 0.15f;
     [SerializeField] private AnimationCurve anticipationCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    [SerializeField] private float halfBladeLength = 0.25f;
 
     private Rigidbody2D rb;
     private Collider2D col;
@@ -22,6 +23,7 @@ public class KnifeController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        rb.interpolation = RigidbodyInterpolation2D.None;
     }
 
     public void ResetForReuse()
@@ -31,6 +33,7 @@ public class KnifeController : MonoBehaviour
         hasResolvedCollision = false;
         transform.SetParent(null);
         transform.rotation = Quaternion.identity;
+        rb.interpolation = RigidbodyInterpolation2D.None;
         rb.isKinematic = false;
         rb.gravityScale = 0f;
         rb.linearVelocity = Vector2.zero;
@@ -42,6 +45,7 @@ public class KnifeController : MonoBehaviour
     {
         hasBeenThrown = true;
         hasResolvedCollision = true;
+        rb.interpolation = RigidbodyInterpolation2D.None;
         rb.isKinematic = true;
         rb.linearVelocity = Vector2.zero;
         col.enabled = true;
@@ -68,6 +72,7 @@ public class KnifeController : MonoBehaviour
         }
         transform.position = startPosition;
         rb.linearVelocity = Vector2.up * knifeData.throwForce;
+        GameEvents.OnKnifeThrown?.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,10 +95,16 @@ public class KnifeController : MonoBehaviour
 
     private void StickToLog(Collision2D collision)
     {
+        Vector2 contactPoint = collision.GetContact(0).point;
+        Vector2 contactNormal = collision.GetContact(0).normal;
+        Vector2 stickPosition = contactPoint + contactNormal * halfBladeLength;
+        transform.position = stickPosition;
         rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.interpolation = RigidbodyInterpolation2D.None;
         rb.isKinematic = true;
         transform.SetParent(collision.transform);
-        GameEvents.OnLogImpact?.Invoke(collision.GetContact(0).point);
+        GameEvents.OnLogImpact?.Invoke(contactPoint);
         GameEvents.OnKnifeHitLog?.Invoke();
     }
 
@@ -115,4 +126,5 @@ public class KnifeController : MonoBehaviour
         rb.angularVelocity = Random.Range(-maxSpinTorque, maxSpinTorque);
         rb.gravityScale = fallGravityScale;
     }
+    public float HalfBladeLength => halfBladeLength;
 }

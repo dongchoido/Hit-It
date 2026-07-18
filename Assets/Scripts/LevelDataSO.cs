@@ -10,7 +10,7 @@ public class LevelDataSO : ScriptableObject
     public bool isBossLevel;
     public GameObject applePrefab;
     public GameObject obstacleKnifePrefab;
-    public float logRadius = 1f;
+    public float appleOffsetFromSurface = 0.25f;
     public List<ApplePlacement> applePlacements = new List<ApplePlacement>();
     public List<KnifePlacement> obstacleKnifePlacements = new List<KnifePlacement>();
 }

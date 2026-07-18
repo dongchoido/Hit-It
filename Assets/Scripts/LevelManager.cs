@@ -67,10 +67,12 @@ public class LevelManager : MonoBehaviour
         spawnedLog = logInstance.GetComponent<LogController>();
         if (spawnedLog != null) spawnedLog.Init(levelData.rotationPattern);
         if (spawnedLog != null) spawnedLog.PlayEntranceAnimation();
+        float logSurfaceRadius = spawnedLog != null ? spawnedLog.SurfaceRadius : 0f;
         LogAppleSpawner appleSpawner = logInstance.GetComponent<LogAppleSpawner>();
-        if (appleSpawner != null) appleSpawner.SpawnApples(levelData.applePrefab, levelData.applePlacements);
+        if (appleSpawner != null) appleSpawner.SpawnApples(levelData.applePrefab, levelData.applePlacements, logSurfaceRadius, levelData.appleOffsetFromSurface);
         LogKnifeSpawner knifeSpawner = logInstance.GetComponent<LogKnifeSpawner>();
-        if (knifeSpawner != null) knifeSpawner.SpawnObstacleKnives(levelData.obstacleKnifePrefab, levelData.obstacleKnifePlacements);
+        if (knifeSpawner != null) knifeSpawner.SpawnObstacleKnives(levelData.obstacleKnifePrefab, levelData.obstacleKnifePlacements, logSurfaceRadius);
         GameEvents.OnLevelLoaded?.Invoke(levelData.totalKnives);
+        GameEvents.OnLevelMusicChanged?.Invoke(levelData.isBossLevel);
     }
 }

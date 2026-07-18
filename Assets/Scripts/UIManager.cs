@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +7,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text totalApplesText;
-    [SerializeField] private GameObject knifeIconPrefab;
-    [SerializeField] private Transform knifeIconContainer;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject victoryPanel;
-
-    private readonly List<GameObject> knifeIcons = new List<GameObject>();
 
     private void Awake()
     {
@@ -29,7 +24,6 @@ public class UIManager : MonoBehaviour
     {
         GameEvents.OnLevelLoaded += HandleLevelLoaded;
         GameEvents.OnScoreChanged += HandleScoreChanged;
-        GameEvents.OnKnifeHitLog += HandleKnifeUsed;
         GameEvents.OnGameOver += HandleGameOver;
         GameEvents.OnClusterVictory += HandleClusterVictory;
         GameEvents.OnCurrencyChanged += HandleCurrencyChanged;
@@ -39,7 +33,6 @@ public class UIManager : MonoBehaviour
     {
         GameEvents.OnLevelLoaded -= HandleLevelLoaded;
         GameEvents.OnScoreChanged -= HandleScoreChanged;
-        GameEvents.OnKnifeHitLog -= HandleKnifeUsed;
         GameEvents.OnGameOver -= HandleGameOver;
         GameEvents.OnClusterVictory -= HandleClusterVictory;
         GameEvents.OnCurrencyChanged -= HandleCurrencyChanged;
@@ -55,29 +48,11 @@ public class UIManager : MonoBehaviour
         if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (victoryPanel != null) victoryPanel.SetActive(false);
         if (scoreText != null) scoreText.text = "0";
-
-        foreach (GameObject icon in knifeIcons) Destroy(icon);
-        knifeIcons.Clear();
-
-        if (knifeIconPrefab == null || knifeIconContainer == null) return;
-        for (int i = 0; i < totalKnives; i++)
-        {
-            GameObject icon = Instantiate(knifeIconPrefab, knifeIconContainer);
-            knifeIcons.Add(icon);
-        }
     }
 
     private void HandleScoreChanged(int score)
     {
         if (scoreText != null) scoreText.text = score.ToString();
-    }
-
-    private void HandleKnifeUsed()
-    {
-        if (knifeIcons.Count == 0) return;
-        int lastIndex = knifeIcons.Count - 1;
-        Destroy(knifeIcons[lastIndex]);
-        knifeIcons.RemoveAt(lastIndex);
     }
 
     private void HandleGameOver()

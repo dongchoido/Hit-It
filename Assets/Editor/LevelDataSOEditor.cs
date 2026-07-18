@@ -17,12 +17,26 @@ public class LevelDataSOEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Placement Editor", EditorStyles.boldLabel);
 
+        float logRadius = LogController.GetPrefabSurfaceRadius(levelData.logPrefab);
+        if (levelData.logPrefab == null)
+        {
+            EditorGUILayout.HelpBox("Gán logPrefab trước để xem preview vị trí.", MessageType.Warning);
+            return;
+        }
+        if (logRadius <= 0f)
+        {
+            EditorGUILayout.HelpBox("Log prefab cần có CircleCollider2D với radius > 0.", MessageType.Warning);
+            return;
+        }
+
         placementMode = GUILayout.Toolbar(placementMode, new string[] { "Apple", "Knife" });
-        EditorGUILayout.HelpBox("Click vào trong vòng tròn để thêm. Click gần 1 điểm đã có để xoá nó.", MessageType.Info);
+        EditorGUILayout.HelpBox("Click vào trong vòng tròn để thêm. Click gần 1 điểm đã có để xoá nó. Bán kính thớt tự đọc từ logPrefab, không cần nhập tay.", MessageType.Info);
+        EditorGUILayout.LabelField("Detected Log Surface Radius: " + logRadius.ToString("F3"));
 
         Rect previewRect = GUILayoutUtility.GetRect(PreviewSize, PreviewSize);
         Vector2 center = previewRect.center;
         float radiusPixels = PreviewSize * 0.5f - 10f;
+        float appleSpawnRadius = logRadius + levelData.appleOffsetFromSurface;
 
         Handles.BeginGUI();
         Handles.color = Color.gray;
@@ -30,20 +44,20 @@ public class LevelDataSOEditor : Editor
 
         foreach (ApplePlacement placement in levelData.applePlacements)
         {
-            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, levelData.logRadius, placement.angleDegrees, placement.radius);
+            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, logRadius, placement.angleDegrees, appleSpawnRadius);
             Handles.color = Color.red;
             Handles.DrawSolidDisc(pointPosition, Vector3.forward, 6f);
         }
 
         foreach (KnifePlacement placement in levelData.obstacleKnifePlacements)
         {
-            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, levelData.logRadius, placement.angleDegrees, placement.radius);
+            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, logRadius, placement.angleDegrees, logRadius);
             Handles.color = Color.cyan;
             Handles.DrawSolidDisc(pointPosition, Vector3.forward, 6f);
         }
         Handles.EndGUI();
 
-        HandleMouseInput(previewRect, center, radiusPixels, levelData);
+        HandleMouseInput(previewRect, center, radiusPixels, logRadius, levelData);
 
         EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
@@ -65,15 +79,20 @@ public class LevelDataSOEditor : Editor
         EditorGUILayout.LabelField("Total Obstacle Knives: " + levelData.obstacleKnifePlacements.Count);
     }
 
+    private float GetPixelRadius(float radiusPixels, float logRadius, float pointRadius)
+    {
+        float normalizedRadius = logRadius > 0f ? pointRadius / logRadius : 0f;
+        return Mathf.Clamp01(normalizedRadius) * radiusPixels;
+    }
+
     private Vector2 GetPointOnCircle(Vector2 center, float radiusPixels, float logRadius, float angleDegrees, float pointRadius)
     {
         float radians = angleDegrees * Mathf.Deg2Rad;
-        float normalizedRadius = logRadius > 0f ? pointRadius / logRadius : 0f;
-        float pixelRadius = Mathf.Clamp01(normalizedRadius) * radiusPixels;
+        float pixelRadius = GetPixelRadius(radiusPixels, logRadius, pointRadius);
         return center + new Vector2(Mathf.Cos(radians), -Mathf.Sin(radians)) * pixelRadius;
     }
 
-    private void HandleMouseInput(Rect previewRect, Vector2 center, float radiusPixels, LevelDataSO levelData)
+    private void HandleMouseInput(Rect previewRect, Vector2 center, float radiusPixels, float logRadius, LevelDataSO levelData)
     {
         Event currentEvent = Event.current;
         if (currentEvent.type != EventType.MouseDown) return;
@@ -83,20 +102,21 @@ public class LevelDataSOEditor : Editor
         float clickDistance = clickOffset.magnitude;
         if (clickDistance > radiusPixels) return;
 
-        if (placementMode == 0) HandleApplePlacement(currentEvent.mousePosition, clickOffset, clickDistance, center, radiusPixels, levelData);
-        else HandleKnifePlacement(currentEvent.mousePosition, clickOffset, clickDistance, center, radiusPixels, levelData);
+        if (placementMode == 0) HandleApplePlacement(currentEvent.mousePosition, clickOffset, center, radiusPixels, logRadius, levelData);
+        else HandleKnifePlacement(currentEvent.mousePosition, clickOffset, center, radiusPixels, logRadius, levelData);
 
         EditorUtility.SetDirty(levelData);
         currentEvent.Use();
         Repaint();
     }
 
-    private void HandleApplePlacement(Vector2 mousePosition, Vector2 clickOffset, float clickDistance, Vector2 center, float radiusPixels, LevelDataSO levelData)
+    private void HandleApplePlacement(Vector2 mousePosition, Vector2 clickOffset, Vector2 center, float radiusPixels, float logRadius, LevelDataSO levelData)
     {
+        float appleSpawnRadius = logRadius + levelData.appleOffsetFromSurface;
         ApplePlacement existing = null;
         foreach (ApplePlacement placement in levelData.applePlacements)
         {
-            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, levelData.logRadius, placement.angleDegrees, placement.radius);
+            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, logRadius, placement.angleDegrees, appleSpawnRadius);
             if (Vector2.Distance(pointPosition, mousePosition) < PointPickRadius) existing = placement;
         }
 
@@ -109,20 +129,18 @@ public class LevelDataSOEditor : Editor
 
         float angle = Mathf.Atan2(-clickOffset.y, clickOffset.x) * Mathf.Rad2Deg;
         if (angle < 0f) angle += 360f;
-        float radius = clickDistance / radiusPixels * levelData.logRadius;
         ApplePlacement newPlacement = new ApplePlacement();
         newPlacement.angleDegrees = angle;
-        newPlacement.radius = radius;
         Undo.RecordObject(levelData, "Add Apple");
         levelData.applePlacements.Add(newPlacement);
     }
 
-    private void HandleKnifePlacement(Vector2 mousePosition, Vector2 clickOffset, float clickDistance, Vector2 center, float radiusPixels, LevelDataSO levelData)
+    private void HandleKnifePlacement(Vector2 mousePosition, Vector2 clickOffset, Vector2 center, float radiusPixels, float logRadius, LevelDataSO levelData)
     {
         KnifePlacement existing = null;
         foreach (KnifePlacement placement in levelData.obstacleKnifePlacements)
         {
-            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, levelData.logRadius, placement.angleDegrees, placement.radius);
+            Vector2 pointPosition = GetPointOnCircle(center, radiusPixels, logRadius, placement.angleDegrees, logRadius);
             if (Vector2.Distance(pointPosition, mousePosition) < PointPickRadius) existing = placement;
         }
 
@@ -137,7 +155,6 @@ public class LevelDataSOEditor : Editor
         if (angle < 0f) angle += 360f;
         KnifePlacement newPlacement = new KnifePlacement();
         newPlacement.angleDegrees = angle;
-        newPlacement.radius = levelData.logRadius;
         Undo.RecordObject(levelData, "Add Knife");
         levelData.obstacleKnifePlacements.Add(newPlacement);
     }

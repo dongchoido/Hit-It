@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RotationPattern_Level01
   m_EditorClassIdentifier: Assembly-CSharp::RotationPatternSO
   phases:
-  - speed: 300
+  - speed: 250
     duration: 10
     speedCurve:
       serializedVersion: 2

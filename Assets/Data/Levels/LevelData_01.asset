@@ -17,11 +17,9 @@ MonoBehaviour:
   rotationPattern: {fileID: 11400000, guid: 49b5a13d9c5abf94a8211f5e8a5ef3e0, type: 2}
   isBossLevel: 0
   applePrefab: {fileID: 5325318884181713363, guid: 3a91eb2d30981d04badd27bb7bc75757, type: 3}
-  obstacleKnifePrefab: {fileID: 1095310661499248199, guid: 23555a04ede26624aa5c16017e718a21, type: 3}
-  logRadius: 0.625
+  obstacleKnifePrefab: {fileID: 1095310661499248199, guid: e324e6955c4d36546ba777cb42bb462d, type: 3}
+  appleOffsetFromSurface: 0.5
   applePlacements:
-  - angleDegrees: 83.986694
-    radius: 0.6221733
+  - angleDegrees: 180
   obstacleKnifePlacements:
-  - angleDegrees: 19.681442
-    radius: 0.625
+  - angleDegrees: 0
