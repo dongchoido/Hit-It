@@ -18,7 +18,6 @@ MonoBehaviour:
   isBossLevel: 0
   applePrefab: {fileID: 5325318884181713363, guid: 3a91eb2d30981d04badd27bb7bc75757, type: 3}
   obstacleKnifePrefab: {fileID: 1095310661499248199, guid: e324e6955c4d36546ba777cb42bb462d, type: 3}
-  logRadius: 0.625
   appleOffsetFromSurface: 0.25
   applePlacements:
   - angleDegrees: 31.331749

@@ -792,6 +792,8 @@ GameObject:
   - component: {fileID: 619092060}
   - component: {fileID: 619092062}
   - component: {fileID: 619092061}
+  - component: {fileID: 619092064}
+  - component: {fileID: 619092063}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -826,9 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8faab85e20c3b4746aa990f9f77decd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  hitLogClip: {fileID: 0}
-  hitKnifeClip: {fileID: 0}
-  collectAppleClip: {fileID: 0}
+  audioLibrary: {fileID: 11400000, guid: e76360ebf08bc4a4d93eb66f1c694712, type: 2}
 --- !u!82 &619092062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -926,6 +926,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &619092063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619092059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0018dfe891a28f34f987c0d1a22ced5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SfxPlayer
+  poolSize: 8
+--- !u!114 &619092064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619092059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b23b8c86b9c944ca88807bff28218c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicPlayer
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1644,7 @@ Transform:
   - {fileID: 176906145}
   - {fileID: 1367701254}
   - {fileID: 99213483}
+  - {fileID: 2115565197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986551146
@@ -1970,6 +1996,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077341333}
   m_CullTransparentMesh: 1
+--- !u!1 &2115565196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115565197}
+  - component: {fileID: 2115565198}
+  m_Layer: 0
+  m_Name: 'AudioSettingsManager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2115565197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115565196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1883233611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115565198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115565196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87e00a73d10dec4185c6435849d931f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsManager
 --- !u!1001 &452844509005638170
 PrefabInstance:
   m_ObjectHideFlags: 0

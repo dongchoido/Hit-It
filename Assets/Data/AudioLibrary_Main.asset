@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7273fe212615c24ea1816c364790429, type: 3}
   m_Name: AudioLibrary_Main
   m_EditorClassIdentifier: Assembly-CSharp::AudioLibrarySO
-  gameplayMusic: {fileID: 0}
-  bossMusic: {fileID: 0}
-  knifeThrowClip: {fileID: 0}
-  knifeHitLogClip: {fileID: 0}
-  knifeHitKnifeClip: {fileID: 0}
-  appleCollectClip: {fileID: 0}
-  logBreakClip: {fileID: 0}
-  gameOverClip: {fileID: 0}
-  victoryClip: {fileID: 0}
-  uiButtonClickClip: {fileID: 0}
+  gameplayMusic: {fileID: 8300000, guid: 508956a31003b6849941e73bec5d0ee1, type: 3}
+  bossMusic: {fileID: 8300000, guid: 18c8af9bcdee8bc4883327981a70aad9, type: 3}
+  knifeThrowClip: {fileID: 8300000, guid: 0987db28a429e3146980b401ea760be5, type: 3}
+  knifeHitLogClip: {fileID: 8300000, guid: 5eadfefd83ef2df48a44fe4c35d9908a, type: 3}
+  knifeHitKnifeClip: {fileID: 8300000, guid: cef2c3e3908d96b49bf12cf28fa606fd, type: 3}
+  appleCollectClip: {fileID: 8300000, guid: 28e89f8a7634a3040b7b2418b30d2d94, type: 3}
+  logBreakClip: {fileID: 8300000, guid: 453358a49c88d0e4898e779b12d7a57e, type: 3}
+  gameOverClip: {fileID: 8300000, guid: 9dcfebef0fb8a6942adf26bab5250259, type: 3}
+  victoryClip: {fileID: 8300000, guid: 3c9ae3480e184924da3e27b729f964ea, type: 3}
+  uiButtonClickClip: {fileID: 8300000, guid: 2e3cb713e82abc94588e57dd5233ba6c, type: 3}
   musicFadeDuration: 1
   sfxPitchVarianceMin: 0.95
   sfxPitchVarianceMax: 1.05
