@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private void HandleLevelLoaded(int totalKnives)
     {
         knivesRemaining = totalKnives;
-        if (CurrentState == GameState.Start) score = 0;
+        score = 0;
         CurrentState = GameState.Playing;
         GameEvents.OnGameStart?.Invoke();
         GameEvents.OnSpawnNextKnife?.Invoke();

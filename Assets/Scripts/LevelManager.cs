@@ -39,6 +39,12 @@ public class LevelManager : MonoBehaviour
         SpawnLevel(levelCluster[currentLevelIndex]);
     }
 
+    public void RetryCurrentLevel()
+    {
+        if (spawnedLog != null) Destroy(spawnedLog.gameObject);
+        SpawnLevel(levelCluster[currentLevelIndex]);
+    }
+
     private void HandleLevelComplete()
     {
         LevelDataSO completedLevel = levelCluster[currentLevelIndex];

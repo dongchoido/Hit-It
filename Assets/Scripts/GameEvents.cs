@@ -21,4 +21,6 @@ public static class GameEvents
     public static Action<float> OnMusicVolumeChanged;
     public static Action<float> OnSfxVolumeChanged;
     public static Action<bool> OnAudioMuteChanged;
+    public static Action<Color> OnKnifeSkinEquipped;
+    public static Action<int> OnDailyRewardClaimed;
 }
