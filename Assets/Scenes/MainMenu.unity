@@ -3026,6 +3026,7 @@ GameObject:
   - component: {fileID: 1746404783}
   - component: {fileID: 1746404782}
   - component: {fileID: 1746404781}
+  - component: {fileID: 1746404791}
   m_Layer: 0
   m_Name: PersistentSystems
   m_TagString: Untagged
@@ -3163,6 +3164,20 @@ Transform:
   - {fileID: 1079776028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1746404791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746404780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5386ac3077fbea4fbfe0849ec8823c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerformanceManager
+  targetFrameRate: 60
+  preventScreenSleep: 1
 --- !u!1 &1796628204
 GameObject:
   m_ObjectHideFlags: 0
