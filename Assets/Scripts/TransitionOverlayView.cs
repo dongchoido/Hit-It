@@ -1,19 +1,21 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasScaler))]
 public class TransitionOverlayView : MonoBehaviour
 {
     [SerializeField] private RectTransform wipePanel;
     [SerializeField] private float wipeDuration = 0.4f;
     [SerializeField] private AnimationCurve wipeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
+    private CanvasScaler canvasScaler;
     private float offscreenDistance;
 
     private void Awake()
     {
-        Canvas parentCanvas = GetComponentInParent<Canvas>();
-        RectTransform canvasRect = parentCanvas.GetComponent<RectTransform>();
-        offscreenDistance = canvasRect.rect.width;
+        canvasScaler = GetComponent<CanvasScaler>();
+        offscreenDistance = ComputeOffscreenDistance();
         SetWipeX(-offscreenDistance);
     }
 
@@ -25,6 +27,16 @@ public class TransitionOverlayView : MonoBehaviour
     public IEnumerator PlayReveal()
     {
         yield return MoveWipe(0f, offscreenDistance);
+    }
+
+    private float ComputeOffscreenDistance()
+    {
+        float canvasHalfWidth = canvasScaler.referenceResolution.x * 0.5f;
+        float panelHalfWidth = wipePanel.rect.width * 0.5f;
+        float panelHalfHeight = wipePanel.rect.height * 0.5f;
+        float rotationRadians = wipePanel.eulerAngles.z * Mathf.Deg2Rad;
+        float projectedHalfWidth = Mathf.Abs(panelHalfWidth * Mathf.Cos(rotationRadians)) + Mathf.Abs(panelHalfHeight * Mathf.Sin(rotationRadians));
+        return canvasHalfWidth + projectedHalfWidth;
     }
 
     private void SetWipeX(float x)

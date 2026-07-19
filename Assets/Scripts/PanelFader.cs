@@ -21,12 +21,14 @@ public class PanelFader : MonoBehaviour
 
     public void Show()
     {
+        GameEvents.OnModalPanelVisibilityChanged?.Invoke(true);
         if (fadeRoutine != null) StopCoroutine(fadeRoutine);
         fadeRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 1f, scaleFrom, 1f));
     }
 
     public void Hide()
     {
+        GameEvents.OnModalPanelVisibilityChanged?.Invoke(false);
         if (fadeRoutine != null) StopCoroutine(fadeRoutine);
         fadeRoutine = StartCoroutine(FadeRoutine(canvasGroup.alpha, 0f, transform.localScale.x, scaleFrom));
     }

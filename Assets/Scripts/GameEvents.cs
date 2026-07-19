@@ -23,4 +23,5 @@ public static class GameEvents
     public static Action<bool> OnAudioMuteChanged;
     public static Action<Color> OnKnifeSkinEquipped;
     public static Action<int> OnDailyRewardClaimed;
+    public static Action<bool> OnModalPanelVisibilityChanged;
 }
