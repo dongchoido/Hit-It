@@ -80,5 +80,6 @@ public class LevelManager : MonoBehaviour
         if (knifeSpawner != null) knifeSpawner.SpawnObstacleKnives(levelData.obstacleKnifePrefab, levelData.obstacleKnifePlacements, logSurfaceRadius);
         GameEvents.OnLevelLoaded?.Invoke(levelData.totalKnives);
         GameEvents.OnLevelMusicChanged?.Invoke(levelData.isBossLevel);
+        GameEvents.OnLevelProgressUpdated?.Invoke(currentLevelIndex, levelCluster.Count, levelData.isBossLevel);
     }
 }

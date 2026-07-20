@@ -14,8 +14,10 @@ public class LogAppleSpawner : MonoBehaviour
             Vector3 localPosition = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0f) * localSpawnRadius;
             GameObject apple = Instantiate(applePrefab, transform);
             apple.transform.localPosition = localPosition;
-            apple.transform.localRotation = Quaternion.identity;
+            apple.transform.localRotation = Quaternion.Euler(0f, 0f, placement.angleDegrees - 90f);
             CompensateParentScale(apple.transform);
+            AppleGlowPulse glowPulse = apple.GetComponent<AppleGlowPulse>();
+            if (glowPulse != null) glowPulse.StartPulsing();
         }
     }
 

@@ -24,4 +24,5 @@ public static class GameEvents
     public static Action<Color> OnKnifeSkinEquipped;
     public static Action<int> OnDailyRewardClaimed;
     public static Action<bool> OnModalPanelVisibilityChanged;
+    public static Action<int, int, bool> OnLevelProgressUpdated;
 }

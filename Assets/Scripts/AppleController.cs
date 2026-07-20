@@ -16,11 +16,13 @@ public class AppleController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Collider2D col;
+    private AppleGlowPulse glowPulse;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        glowPulse = GetComponent<AppleGlowPulse>();
         rb.isKinematic = true;
         rb.gravityScale = 0f;
     }
@@ -45,6 +47,7 @@ public class AppleController : MonoBehaviour
 
     public void LaunchAway(Vector2 direction)
     {
+        if (glowPulse != null) glowPulse.StopPulsing();
         col.enabled = false;
         transform.SetParent(null);
         rb.isKinematic = false;
