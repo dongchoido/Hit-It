@@ -11,7 +11,6 @@ public static class GameEvents
     public static Action OnClusterVictory;
     public static Action OnGameOver;
     public static Action<int> OnLevelLoaded;
-    public static Action<int> OnScoreChanged;
     public static Action OnSpawnNextKnife;
     public static Action<Vector3> OnLogImpact;
     public static Action<int> OnCurrencyChanged;

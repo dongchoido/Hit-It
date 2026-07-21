@@ -12,12 +12,12 @@ public class ScoreTextPunchListener : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnScoreChanged += HandleScoreChanged;
+       //GameEvents.OnScoreChanged += HandleScoreChanged;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnScoreChanged -= HandleScoreChanged;
+        //GameEvents.OnScoreChanged -= HandleScoreChanged;
     }
 
     private void HandleScoreChanged(int score)

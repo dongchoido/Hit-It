@@ -19,16 +19,24 @@ public class SessionStatsManager : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnKnifeHitLog += HandleKnifeHitLog;
+        GameEvents.OnGameOver += HandleGameOver;
     }
 
     private void OnDisable()
     {
         GameEvents.OnKnifeHitLog -= HandleKnifeHitLog;
+        GameEvents.OnGameOver -= HandleGameOver;
     }
 
     private void HandleKnifeHitLog()
     {
         totalKnifeHits++;
+        GameEvents.OnTotalKnifeHitsChanged?.Invoke(totalKnifeHits);
+    }
+
+    private void HandleGameOver()
+    {
+        totalKnifeHits = 0;
         GameEvents.OnTotalKnifeHitsChanged?.Invoke(totalKnifeHits);
     }
 }

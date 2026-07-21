@@ -15,6 +15,7 @@ public class ShopSkinButtonView : MonoBehaviour
     private void Awake()
     {
         actionButton.onClick.AddListener(HandleClicked);
+        if (iconImage != null) iconImage.preserveAspect = true;
     }
 
     public void Setup(KnifeSkinSO skinData, Action<KnifeSkinSO> clickCallback)

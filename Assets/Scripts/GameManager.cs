@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState { get; private set; } = GameState.Start;
 
     private int knivesRemaining;
-    private int score;
 
     private void Awake()
     {
@@ -41,7 +40,6 @@ public class GameManager : MonoBehaviour
     private void HandleLevelLoaded(int totalKnives)
     {
         knivesRemaining = totalKnives;
-        score = 0;
         CurrentState = GameState.Playing;
         GameEvents.OnGameStart?.Invoke();
         GameEvents.OnSpawnNextKnife?.Invoke();
@@ -50,9 +48,7 @@ public class GameManager : MonoBehaviour
     private void HandleKnifeHitLog()
     {
         if (CurrentState != GameState.Playing) return;
-        score++;
         knivesRemaining--;
-        GameEvents.OnScoreChanged?.Invoke(score);
         if (knivesRemaining <= 0) GameEvents.OnLevelComplete?.Invoke();
         else GameEvents.OnSpawnNextKnife?.Invoke();
     }

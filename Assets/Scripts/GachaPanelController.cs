@@ -21,6 +21,7 @@ public class GachaPanelController : MonoBehaviour
         panelFader = GetComponent<PanelFader>();
         spinButton.onClick.AddListener(HandleSpinClicked);
         closeButton.onClick.AddListener(Hide);
+        if (resultIcon != null) resultIcon.preserveAspect = true;
     }
 
     public void Show()
