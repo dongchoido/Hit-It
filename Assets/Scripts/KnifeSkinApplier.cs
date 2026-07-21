@@ -24,11 +24,13 @@ public class KnifeSkinApplier : MonoBehaviour
     private void ApplyCurrentSkin()
     {
         if (KnifeSkinManager.Instance == null) return;
-        spriteRenderer.color = KnifeSkinManager.Instance.EquippedColor;
+        if (KnifeSkinManager.Instance.EquippedSprite == null) return;
+        spriteRenderer.sprite = KnifeSkinManager.Instance.EquippedSprite;
     }
 
-    private void HandleSkinEquipped(Color color)
+    private void HandleSkinEquipped(Sprite sprite)
     {
-        spriteRenderer.color = color;
+        if (sprite == null) return;
+        spriteRenderer.sprite = sprite;
     }
 }

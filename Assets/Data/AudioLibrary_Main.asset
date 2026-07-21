@@ -22,8 +22,11 @@ MonoBehaviour:
   gameOverClip: {fileID: 8300000, guid: 9dcfebef0fb8a6942adf26bab5250259, type: 3}
   victoryClip: {fileID: 8300000, guid: 3c9ae3480e184924da3e27b729f964ea, type: 3}
   uiButtonClickClip: {fileID: 8300000, guid: 2e3cb713e82abc94588e57dd5233ba6c, type: 3}
+  comboMilestoneClip: {fileID: 8300000, guid: 4b35e2645ce2dbc48b742c5ea29f2a19, type: 3}
   musicFadeDuration: 1
   sfxPitchVarianceMin: 0.95
   sfxPitchVarianceMax: 1.05
   comboPitchStep: 0.03
   comboPitchMax: 1.5
+  comboPitchJitter: 0.02
+  comboMilestoneStep: 5

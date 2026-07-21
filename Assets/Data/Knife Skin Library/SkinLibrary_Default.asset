@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KnifeSkinLibrarySO
   skins:
   - {fileID: 11400000, guid: f0fb80cba090ee84290b9dde43e2f1cd, type: 2}
+  - {fileID: 11400000, guid: 588b18721bcf84d49b9d8b35680299b4, type: 2}
+  - {fileID: 11400000, guid: 684eceb700f0c074d83b62c287f3b047, type: 2}

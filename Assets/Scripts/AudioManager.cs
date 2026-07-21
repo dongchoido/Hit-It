@@ -76,9 +76,11 @@ public class AudioManager : MonoBehaviour
 
     private void HandleKnifeHitLog()
     {
-        float pitch = Mathf.Min(1f + knifeComboCount * audioLibrary.comboPitchStep, audioLibrary.comboPitchMax);
-        sfxPlayer.PlaySfx(audioLibrary.knifeHitLogClip, pitch);
+        float basePitch = Mathf.Min(1f + knifeComboCount * audioLibrary.comboPitchStep, audioLibrary.comboPitchMax);
+        float jitteredPitch = basePitch + Random.Range(-audioLibrary.comboPitchJitter, audioLibrary.comboPitchJitter);
+        sfxPlayer.PlaySfx(audioLibrary.knifeHitLogClip, jitteredPitch);
         knifeComboCount++;
+        if (audioLibrary.comboMilestoneStep > 0 && knifeComboCount % audioLibrary.comboMilestoneStep == 0) sfxPlayer.PlaySfx(audioLibrary.comboMilestoneClip, 1f);
     }
 
     private void HandleKnifeHitKnife()

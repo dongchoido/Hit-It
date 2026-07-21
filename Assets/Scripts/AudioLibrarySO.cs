@@ -13,9 +13,12 @@ public class AudioLibrarySO : ScriptableObject
     public AudioClip gameOverClip;
     public AudioClip victoryClip;
     public AudioClip uiButtonClickClip;
+    public AudioClip comboMilestoneClip;
     public float musicFadeDuration = 1f;
     public float sfxPitchVarianceMin = 0.95f;
     public float sfxPitchVarianceMax = 1.05f;
     public float comboPitchStep = 0.03f;
     public float comboPitchMax = 1.5f;
+    public float comboPitchJitter = 0.02f;
+    public int comboMilestoneStep = 5;
 }

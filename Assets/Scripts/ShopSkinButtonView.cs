@@ -22,7 +22,7 @@ public class ShopSkinButtonView : MonoBehaviour
         skin = skinData;
         onClicked = clickCallback;
         if (nameText != null) nameText.text = skin.displayName;
-        if (iconImage != null) iconImage.color = skin.tintColor;
+        if (iconImage != null) iconImage.sprite = skin.skinSprite;
         Refresh();
     }
 
@@ -31,7 +31,7 @@ public class ShopSkinButtonView : MonoBehaviour
         if (KnifeSkinManager.Instance == null) return;
         bool unlocked = KnifeSkinManager.Instance.IsUnlocked(skin);
         bool equipped = KnifeSkinManager.Instance.GetEquippedId() == skin.skinId;
-        if (statusText != null) statusText.text = equipped ? "Đang dùng" : unlocked ? "Trang bị" : skin.cost.ToString();
+        if (statusText != null) statusText.text = equipped ? "Đang dùng" : unlocked ? "Trang bị" : skin.shopCost.ToString();
         actionButton.interactable = !equipped;
     }
 

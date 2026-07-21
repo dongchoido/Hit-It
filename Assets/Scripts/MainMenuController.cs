@@ -6,8 +6,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button settingsButton;
+    [SerializeField] private Button gachaButton;
     [SerializeField] private ShopPanelController shopPanel;
     [SerializeField] private SettingsPanelController settingsPanel;
+    [SerializeField] private GachaPanelController gachaPanel;
     [SerializeField] private string gameplaySceneName = "Gameplay";
 
     private void Awake()
@@ -15,6 +17,7 @@ public class MainMenuController : MonoBehaviour
         playButton.onClick.AddListener(HandlePlayClicked);
         shopButton.onClick.AddListener(HandleShopClicked);
         settingsButton.onClick.AddListener(HandleSettingsClicked);
+        gachaButton.onClick.AddListener(HandleGachaClicked);
     }
 
     private void HandlePlayClicked()
@@ -30,5 +33,10 @@ public class MainMenuController : MonoBehaviour
     private void HandleSettingsClicked()
     {
         if (settingsPanel != null) settingsPanel.Show();
+    }
+
+    private void HandleGachaClicked()
+    {
+        if (gachaPanel != null) gachaPanel.Show();
     }
 }

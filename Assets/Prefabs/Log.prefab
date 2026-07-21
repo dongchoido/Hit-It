@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2814015568736698385}
   - component: {fileID: -6441618376041739547}
   - component: {fileID: 6009978512384143138}
+  - component: {fileID: -4075641731371236243}
   m_Layer: 0
   m_Name: Log
   m_TagString: Log
@@ -205,3 +206,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65633f58ef6d8d14588c05901b65d6f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogKnifeSpawner
+--- !u!114 &-4075641731371236243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876176794395197532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc719543ffe3b4f4eb295db27973e107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogFlashEffect
+  flashColor: {r: 1, g: 0.85265267, b: 0.48235294, a: 1}
+  flashDuration: 0.08

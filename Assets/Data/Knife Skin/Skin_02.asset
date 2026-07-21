@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8edd8ac3f0eb7d54bb13c974fc7984d3, type: 3}
-  m_Name: Skin_Default
+  m_Name: Skin_02
   m_EditorClassIdentifier: Assembly-CSharp::KnifeSkinSO
   skinId: 
   displayName: 
-  skinSprite: {fileID: 8070235055996712404, guid: a6fe0e2b4ec938b4e8ee62b4385e22e9, type: 3}
-  rarity: 0
-  shopCost: 10
+  skinSprite: {fileID: -7328221340324869410, guid: a6fe0e2b4ec938b4e8ee62b4385e22e9, type: 3}
+  rarity: 2
+  shopCost: 100

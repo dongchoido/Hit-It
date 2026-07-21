@@ -146,6 +146,5 @@ public class LogController : MonoBehaviour
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
             pieceBody.AddForce(randomDirection * splitForce, ForceMode2D.Impulse);
         }
-        Destroy(broken, brokenPieceLifetime);
     }
 }

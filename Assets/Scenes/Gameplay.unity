@@ -452,7 +452,8 @@ GameObject:
   - component: {fileID: 68096399}
   - component: {fileID: 68096398}
   - component: {fileID: 68096401}
-  - component: {fileID: 68096400}
+  - component: {fileID: 68096403}
+  - component: {fileID: 68096402}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -521,18 +522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68096396}
   m_CullTransparentMesh: 1
---- !u!114 &68096400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68096396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d47f755e6a78b941982f655a95bd4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreTextPunchListener
 --- !u!114 &68096401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +536,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PunchScaleEffect
   punchScale: 1.2
   duration: 0.15
+--- !u!114 &68096402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68096396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7fb384a5644924aa235820fea6ddfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TotalKnifeHitsPunchListener
+--- !u!114 &68096403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68096396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9f6cdc68b2bba4eb0b6f007aa25377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TotalKnifeHitsDisplayUI
 --- !u!1 &90362892
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +748,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f63417e422db0b499dbf5240cd59445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelProgressNodeView
+--- !u!1 &280682772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280682773}
+  - component: {fileID: 280682774}
+  m_Layer: 0
+  m_Name: SessionStatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &280682773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280682772}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.70819, y: 1859.5442, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1883233611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280682774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280682772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b499eae8d501b89448013368e6cbceeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SessionStatsManager
 --- !u!1 &317057775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,6 +2913,7 @@ GameObject:
   - component: {fileID: 1346417202}
   - component: {fileID: 1346417205}
   - component: {fileID: 1346417204}
+  - component: {fileID: 1346417206}
   m_Layer: 5
   m_Name: TotalApplesText
   m_TagString: Untagged
@@ -2950,6 +3008,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PunchScaleEffect
   punchScale: 1.2
   duration: 0.15
+--- !u!114 &1346417206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346417200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265ccbe9b5553704186747f5de1670ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyDisplayUI
 --- !u!1 &1347852851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,6 +3401,7 @@ Transform:
   - {fileID: 1367701254}
   - {fileID: 99213483}
   - {fileID: 2115565197}
+  - {fileID: 280682773}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1932467041 stripped

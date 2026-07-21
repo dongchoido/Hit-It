@@ -9,7 +9,7 @@ public class KnifeSkinManager : MonoBehaviour
     private const string UnlockedPrefix = "SkinUnlocked_";
     private const string EquippedKey = "EquippedSkinId";
 
-    public Color EquippedColor { get; private set; } = Color.white;
+    public Sprite EquippedSprite { get; private set; }
     public KnifeSkinLibrarySO Library => skinLibrary;
 
     private void Awake()
@@ -20,23 +20,28 @@ public class KnifeSkinManager : MonoBehaviour
             return;
         }
         Instance = this;
-        LoadEquippedColor();
+        LoadEquippedSprite();
     }
 
     public bool IsUnlocked(KnifeSkinSO skin)
     {
-        if (skin.cost <= 0) return true;
+        if (skin.shopCost <= 0) return true;
         return PlayerPrefs.GetInt(UnlockedPrefix + skin.skinId, 0) == 1;
+    }
+
+    public void Unlock(KnifeSkinSO skin)
+    {
+        PlayerPrefs.SetInt(UnlockedPrefix + skin.skinId, 1);
+        PlayerPrefs.Save();
     }
 
     public bool Purchase(KnifeSkinSO skin)
     {
         if (IsUnlocked(skin)) return true;
         if (CurrencyManager.Instance == null) return false;
-        bool spent = CurrencyManager.Instance.TrySpend(skin.cost);
+        bool spent = CurrencyManager.Instance.TrySpend(skin.shopCost);
         if (!spent) return false;
-        PlayerPrefs.SetInt(UnlockedPrefix + skin.skinId, 1);
-        PlayerPrefs.Save();
+        Unlock(skin);
         return true;
     }
 
@@ -45,8 +50,8 @@ public class KnifeSkinManager : MonoBehaviour
         if (!IsUnlocked(skin)) return;
         PlayerPrefs.SetString(EquippedKey, skin.skinId);
         PlayerPrefs.Save();
-        EquippedColor = skin.tintColor;
-        GameEvents.OnKnifeSkinEquipped?.Invoke(EquippedColor);
+        EquippedSprite = skin.skinSprite;
+        GameEvents.OnKnifeSkinEquipped?.Invoke(EquippedSprite);
     }
 
     public string GetEquippedId()
@@ -54,14 +59,14 @@ public class KnifeSkinManager : MonoBehaviour
         return PlayerPrefs.GetString(EquippedKey, string.Empty);
     }
 
-    private void LoadEquippedColor()
+    private void LoadEquippedSprite()
     {
         if (skinLibrary == null) return;
         string equippedId = GetEquippedId();
         foreach (KnifeSkinSO skin in skinLibrary.skins)
         {
             if (skin.skinId != equippedId) continue;
-            EquippedColor = skin.tintColor;
+            EquippedSprite = skin.skinSprite;
             return;
         }
     }
