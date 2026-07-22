@@ -1,4 +1,4 @@
-using GoogleMobileAds.Api;
+﻿using GoogleMobileAds.Api;
 using UnityEngine;
 
 public class AdMobBannerProvider : MonoBehaviour, IAdBannerProvider
@@ -6,31 +6,20 @@ public class AdMobBannerProvider : MonoBehaviour, IAdBannerProvider
     [SerializeField] private string androidTestAdUnitId = "ca-app-pub-3940256099942544/6300978111";
 
     private BannerView bannerView;
-    private static bool isInitialized;
-    private static AdMobBannerProvider instance;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
     public void Initialize()
     {
-        if (isInitialized) CreateBannerView();
-        else MobileAds.Initialize(HandleInitializationComplete);
+        MobileAds.Initialize(HandleInitializationComplete);
     }
 
     public void ShowBanner()
     {
-        if (bannerView == null) CreateBannerView();
-        else bannerView.Show();
+        if (bannerView == null)
+        {
+            CreateBannerView();
+            return;
+        }
+        bannerView.Show();
     }
 
     public void HideBanner()
@@ -41,18 +30,15 @@ public class AdMobBannerProvider : MonoBehaviour, IAdBannerProvider
 
     private void HandleInitializationComplete(InitializationStatus status)
     {
-        isInitialized = true;
         CreateBannerView();
     }
 
     private void CreateBannerView()
     {
-        if (bannerView != null) return;
-
+        if (bannerView != null) bannerView.Destroy();
         bannerView = new BannerView(androidTestAdUnitId, AdSize.Banner, AdPosition.Bottom);
         bannerView.OnBannerAdLoaded += HandleBannerLoaded;
         bannerView.OnBannerAdLoadFailed += HandleBannerLoadFailed;
-
         AdRequest request = new AdRequest();
         bannerView.LoadAd(request);
     }
