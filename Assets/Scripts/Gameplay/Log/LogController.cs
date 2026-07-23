@@ -112,6 +112,7 @@ public class LogController : MonoBehaviour
         if (rotateRoutine != null) StopCoroutine(rotateRoutine);
         DetachAttachedObjects();
         SpawnBrokenPieces();
+        GameEvents.OnLogBroken?.Invoke(transform.position);
         if (spriteRenderer != null) spriteRenderer.enabled = false;
         if (logCollider != null) logCollider.enabled = false;
     }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e26a885a5238ae45bcbb5dd830303b9, type: 3}
+  m_Name: WoodChipVisuals_Main
+  m_EditorClassIdentifier: Assembly-CSharp::WoodChipVisualLibrarySO
+  chipSprites:
+  - {fileID: 7681185264341355648, guid: d533a9b21d7775b40aba361e44f7e23a, type: 3}
+  - {fileID: -6130640540005726415, guid: d533a9b21d7775b40aba361e44f7e23a, type: 3}
+  - {fileID: -2889883502730629456, guid: d533a9b21d7775b40aba361e44f7e23a, type: 3}
+  - {fileID: 2849338917111697322, guid: d533a9b21d7775b40aba361e44f7e23a, type: 3}
+  - {fileID: 8287939849275002539, guid: d533a9b21d7775b40aba361e44f7e23a, type: 3}

@@ -274,6 +274,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 887183150}
     m_Modifications:
+    - target: {fileID: 2734321518284110997, guid: 750af725aa8352248a9f563322e482b4, type: 3}
+      propertyPath: bossIcon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734321518284110997, guid: 750af725aa8352248a9f563322e482b4, type: 3}
+      propertyPath: normalIcon
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3621059961378404408, guid: 750af725aa8352248a9f563322e482b4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1343,6 +1351,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &839170344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 839170345}
+  - component: {fileID: 839170346}
+  m_Layer: 0
+  m_Name: WoodChipSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &839170345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839170344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1883233611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839170346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839170344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b47819ee33bdfa4199c879ca30e6671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WoodChipSpawner
+  chipVisuals: {fileID: 11400000, guid: b38a789848b51ab4bb7e8bafd5a4d8a0, type: 2}
+  chipPrefab: {fileID: 561244020274111769, guid: 4abd06cbbf0d317409bb5ffa1d3ced91, type: 3}
+  knifeHitChipCount: 5
+  logBreakChipCount: 15
+  knifeHitForceMin: 1
+  knifeHitForceMax: 3
+  logBreakForceMin: 2
+  logBreakForceMax: 6
+  gravityScale: 2
 --- !u!1 &887183149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44364a742f23d5e42b2afc7b905d435e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  scoreText: {fileID: 68096398}
 --- !u!1 &1157188185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,50 +3080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265ccbe9b5553704186747f5de1670ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyDisplayUI
---- !u!1 &1347852851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1347852852}
-  - component: {fileID: 1347852853}
-  m_Layer: 0
-  m_Name: WoodDebrisSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1347852852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347852851}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1883233611}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1347852853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347852851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052a368bec92fd94e9ed40008ae98a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WoodDebrisSpawner
 --- !u!1 &1367701253
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,11 +3413,11 @@ Transform:
   - {fileID: 1192822486}
   - {fileID: 1149783339}
   - {fileID: 373179515}
-  - {fileID: 1347852852}
   - {fileID: 1367701254}
   - {fileID: 99213483}
   - {fileID: 2115565197}
   - {fileID: 280682773}
+  - {fileID: 839170345}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1932467041 stripped

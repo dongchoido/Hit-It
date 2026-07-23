@@ -3,13 +3,12 @@ using UnityEngine.UI;
 
 public class LevelProgressNodeView : MonoBehaviour
 {
-    [SerializeField] private Image nodeImage;
+    [SerializeField] private Image flameImage;
+    [SerializeField] private FlameAnimator flameAnimator;
+    [SerializeField] private Sprite unlitFlameSprite;
     [SerializeField] private GameObject bossIcon;
     [SerializeField] private GameObject normalIcon;
-    [SerializeField] private Color lockedColor = new Color(1f, 1f, 1f, 0.35f);
-    [SerializeField] private Color currentColor = Color.white;
-    [SerializeField] private Color completedColor = new Color(0.4f, 1f, 0.5f, 1f);
-    [SerializeField] private float pulseScale = 1.2f;
+    [SerializeField] private float pulseScale = 1.15f;
     [SerializeField] private float pulseSpeed = 2.5f;
 
     private Vector3 baseScale;
@@ -30,20 +29,21 @@ public class LevelProgressNodeView : MonoBehaviour
     {
         isPulsing = false;
         transform.localScale = baseScale;
-        if (nodeImage != null) nodeImage.color = lockedColor;
+        if (flameAnimator != null) flameAnimator.Stop();
+        if (flameImage != null) flameImage.sprite = unlitFlameSprite;
     }
 
     public void SetCompleted()
     {
         isPulsing = false;
         transform.localScale = baseScale;
-        if (nodeImage != null) nodeImage.color = completedColor;
+        if (flameAnimator != null) flameAnimator.Play();
     }
 
     public void SetCurrent()
     {
         isPulsing = true;
-        if (nodeImage != null) nodeImage.color = currentColor;
+        if (flameAnimator != null) flameAnimator.Play();
     }
 
     private void Update()

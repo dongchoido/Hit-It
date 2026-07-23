@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GachaConfigSO
   entries:
   - skin: {fileID: 11400000, guid: f0fb80cba090ee84290b9dde43e2f1cd, type: 2}
-    weight: 40
+    weight: 5
   - skin: {fileID: 11400000, guid: 588b18721bcf84d49b9d8b35680299b4, type: 2}
-    weight: 20
+    weight: 10
   - skin: {fileID: 11400000, guid: 684eceb700f0c074d83b62c287f3b047, type: 2}
     weight: 10
   - skin: {fileID: 0}
-    weight: 30
+    weight: 100

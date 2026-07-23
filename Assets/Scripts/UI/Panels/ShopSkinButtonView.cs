@@ -7,37 +7,36 @@ public class ShopSkinButtonView : MonoBehaviour
     [SerializeField] private Image iconImage;
     [SerializeField] private Text nameText;
     [SerializeField] private Text statusText;
-    [SerializeField] private Button actionButton;
+    [SerializeField] private Button equipButton;
 
     private KnifeSkinSO skin;
-    private Action<KnifeSkinSO> onClicked;
+    private Action<KnifeSkinSO> onEquipClicked;
 
     private void Awake()
     {
-        actionButton.onClick.AddListener(HandleClicked);
+        equipButton.onClick.AddListener(HandleEquipClicked);
         if (iconImage != null) iconImage.preserveAspect = true;
     }
 
-    public void Setup(KnifeSkinSO skinData, Action<KnifeSkinSO> clickCallback)
+    public void Setup(KnifeSkinSO skinData, Action<KnifeSkinSO> equipCallback)
     {
         skin = skinData;
-        onClicked = clickCallback;
+        onEquipClicked = equipCallback;
         if (nameText != null) nameText.text = skin.displayName;
         if (iconImage != null) iconImage.sprite = skin.skinSprite;
         Refresh();
     }
 
-    public void Refresh()
+    private void Refresh()
     {
         if (KnifeSkinManager.Instance == null) return;
-        bool unlocked = KnifeSkinManager.Instance.IsUnlocked(skin);
-        bool equipped = KnifeSkinManager.Instance.GetEquippedId() == skin.skinId;
-        if (statusText != null) statusText.text = equipped ? "Đang dùng" : unlocked ? "Trang bị" : skin.shopCost.ToString();
-        actionButton.interactable = !equipped;
+        bool equipped = KnifeSkinManager.Instance.IsEquipped(skin);
+        if (statusText != null) statusText.text = equipped ? "Đang dùng" : string.Empty;
+        equipButton.interactable = !equipped;
     }
 
-    private void HandleClicked()
+    private void HandleEquipClicked()
     {
-        onClicked?.Invoke(skin);
+        onEquipClicked?.Invoke(skin);
     }
 }

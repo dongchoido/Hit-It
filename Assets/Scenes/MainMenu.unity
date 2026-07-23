@@ -4898,6 +4898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeSkinManager
   skinLibrary: {fileID: 11400000, guid: fe58349c67287c847a317e04470cd752, type: 2}
+  defaultSkin: {fileID: 11400000, guid: 481fc537bb423354d9d84226b71b2863, type: 2}
 --- !u!114 &1746404783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5087,6 +5088,7 @@ MonoBehaviour:
   skinButtonPrefab: {fileID: 3625087044856810088, guid: dc8af4064bbbf5242866017386695c3a, type: 3}
   skinButtonContainer: {fileID: 375341914}
   closeButton: {fileID: 1452097012}
+  emptyStateLabel: {fileID: 0}
 --- !u!114 &1796628207
 MonoBehaviour:
   m_ObjectHideFlags: 0

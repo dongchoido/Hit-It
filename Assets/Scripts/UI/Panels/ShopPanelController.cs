@@ -9,20 +9,20 @@ public class ShopPanelController : MonoBehaviour
     [SerializeField] private GameObject skinButtonPrefab;
     [SerializeField] private Transform skinButtonContainer;
     [SerializeField] private Button closeButton;
+    [SerializeField] private GameObject emptyStateLabel;
 
     private PanelFader panelFader;
-    private readonly List<ShopSkinButtonView> spawnedButtons = new List<ShopSkinButtonView>();
+    private readonly List<GameObject> spawnedButtons = new List<GameObject>();
 
     private void Awake()
     {
         panelFader = GetComponent<PanelFader>();
         closeButton.onClick.AddListener(Hide);
-        BuildSkinList();
     }
 
     public void Show()
     {
-        RefreshAllButtons();
+        BuildSkinList();
         panelFader.Show();
     }
 
@@ -33,29 +33,31 @@ public class ShopPanelController : MonoBehaviour
 
     private void BuildSkinList()
     {
+        ClearSkinList();
         if (skinLibrary == null || skinButtonPrefab == null || skinButtonContainer == null) return;
+        int ownedCount = 0;
         foreach (KnifeSkinSO skin in skinLibrary.skins)
         {
+            if (KnifeSkinManager.Instance == null || !KnifeSkinManager.Instance.IsUnlocked(skin)) continue;
             GameObject instance = Instantiate(skinButtonPrefab, skinButtonContainer);
             ShopSkinButtonView view = instance.GetComponent<ShopSkinButtonView>();
-            if (view == null) continue;
-            view.Setup(skin, HandleSkinClicked);
-            spawnedButtons.Add(view);
+            if (view != null) view.Setup(skin, HandleEquipClicked);
+            spawnedButtons.Add(instance);
+            ownedCount++;
         }
+        if (emptyStateLabel != null) emptyStateLabel.SetActive(ownedCount == 0);
     }
 
-    private void HandleSkinClicked(KnifeSkinSO skin)
+    private void ClearSkinList()
+    {
+        foreach (GameObject button in spawnedButtons) Destroy(button);
+        spawnedButtons.Clear();
+    }
+
+    private void HandleEquipClicked(KnifeSkinSO skin)
     {
         if (KnifeSkinManager.Instance == null) return;
-        bool unlocked = KnifeSkinManager.Instance.IsUnlocked(skin);
-        if (!unlocked) unlocked = KnifeSkinManager.Instance.Purchase(skin);
-        if (!unlocked) return;
         KnifeSkinManager.Instance.Equip(skin);
-        RefreshAllButtons();
-    }
-
-    private void RefreshAllButtons()
-    {
-        foreach (ShopSkinButtonView view in spawnedButtons) view.Refresh();
+        BuildSkinList();
     }
 }

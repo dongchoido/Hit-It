@@ -13,6 +13,7 @@ public static class GameEvents
     public static Action<int> OnLevelLoaded;
     public static Action OnSpawnNextKnife;
     public static Action<Vector3> OnLogImpact;
+    public static Action<Vector3> OnLogBroken;
     public static Action<int> OnCurrencyChanged;
     public static Action OnKnifeThrown;
     public static Action<bool> OnLevelMusicChanged;
